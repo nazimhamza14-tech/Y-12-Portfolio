@@ -1,1 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Euler — Solved Problems</title>
+  <meta name="description" content="List of my solved Project Euler problems with links to solutions and short notes." />
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:linear-gradient(180deg,#071022 0%, #071a2a 100%);color:#e6eef8;line-height:1.45}
+    .wrap{max-width:960px;margin:40px auto;padding:24px}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin:6px 0 18px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .card h2{margin:0 0 8px;font-size:1.05rem}
+    .meta{font-size:0.9rem;color:var(--muted);margin-bottom:12px}
+    .desc{color:#d7e7ff;font-size:0.95rem;margin-bottom:12px}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:var(--accent);font-weight:600}
+    .small{font-size:0.85rem;color:var(--muted)}
+    footer{margin-top:22px;color:var(--muted);font-size:0.9rem}
+
+    /* simple responsive */
+    @media (max-width:520px){.wrap{padding:16px;margin:20px auto}.logo{width:48px;height:48px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="logo">PE</div>
+      <div>
+        <h1>Project Euler — Solved Problems</h1>
+        <p class="lead">A compact list of Project Euler problems I've solved, with short notes and links to solutions in this repo.</p>
+      </div>
+    </header>
+
+    <section style="margin-top:18px">
+      <div class="grid">
+
+        <!-- Problem 1 -->
+        <article class="card">
+          <h2>Problem 1 — Multiples of 3 and 5</h2>
+          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
+          <p class="desc">Find the sum of all the multiples of 3 or 5 below 1000. I used a simple loop and arithmetic progressions for an O(1) alternative (closed-form).</p>
+          <div class="row">
+            <a class="btn" href="./solutions/problem001.py">View solution (problem001.py)</a>
+            <a class="btn" href="https://projecteuler.net/problem=1" target="_blank">Problem page</a>
+          </div>
+          <p class="small" style="margin-top:10px">Notes: include both iterative and formula versions in the repo; formula avoids iteration.</p>
+        </article>
+
+        <!-- Problem 2 -->
+        <article class="card">
+          <h2>Problem 2 — Even Fibonacci numbers</h2>
+          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
+          <p class="desc">Sum the even-valued Fibonacci numbers not exceeding four million. Implemented an efficient generator and used the fact every 3rd Fibonacci number is even.</p>
+          <div class="row">
+            <a class="btn" href="./solutions/problem002.py">View solution (problem002.py)</a>
+            <a class="btn" href="https://projecteuler.net/problem=2" target="_blank">Problem page</a>
+          </div>
+          <p class="small">Notes: O(n) time with linear iteration, O(1) memory.</p>
+        </article>
+
+        <!-- Problem 3 -->
+        <article class="card">
+          <h2>Problem 3 — Largest prime factor</h2>
+          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
+          <p class="desc">Find the largest prime factor of 600851475143. I implemented trial division up to sqrt(n) with wheel optimization and removed small factors first.</p>
+          <div class="row">
+            <a class="btn" href="./solutions/problem003.py">View solution (problem003.py)</a>
+            <a class="btn" href="https://projecteuler.net/problem=3" target="_blank">Problem page</a>
+          </div>
+          <p class="small">Notes: optimized by removing factor 2 and checking odd divisors only.</p>
+        </article>
+
+        <!-- Problem 4 -->
+        <article class="card">
+          <h2>Problem 4 — Largest palindrome product</h2>
+          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
+          <p class="desc">Largest palindrome made from the product of two 3-digit numbers. Implemented nested loops with early break when possible and a palindrome test function.</p>
+          <div class="row">
+            <a class="btn" href="./solutions/problem004.py">View solution (problem004.py)</a>
+            <a class="btn" href="https://projecteuler.net/problem=4" target="_blank">Problem page</a>
+          </div>
+          <p class="small">Notes: consider iterating from largest downwards to find max earlier.</p>
+        </article>
+
+        <!-- Problem 6 -->
+        <article class="card">
+          <h2>Problem 6 — Sum square difference</h2>
+          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
+          <p class="desc">Difference between the sum of the squares and the square of the sum for the first 100 natural numbers. Implemented using closed-form formulas for speed.</p>
+          <div class="row">
+            <a class="btn" href="./solutions/problem006.py">View solution (problem006.py)</a>
+            <a class="btn" href="https://projecteuler.net/problem=6" target="_blank">Problem page</a>
+          </div>
+          <p class="small">Notes: O(1) solution using formulas for sum(n) and sum(n^2).</p>
+        </article>
+
+      </div>
+    </section>
+
+    <footer>
+      <p>Want a different layout (table, timeline, or individual pages per problem)? I can generate that too — copy this file to <code>index.html</code> in your GitHub Pages branch (usually <code>main</code> or <code>gh-pages</code>), and ensure a <code>solutions/</code> folder holds the linked files.</p>
+      <p style="margin-top:6px">Generated: <small class="small">Automatic site snippet</small></p>
+    </footer>
+  </main>
+</body>
+</html>
 
