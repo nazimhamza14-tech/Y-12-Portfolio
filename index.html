@@ -1,112 +1,272 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Project Euler — Solved Problems</title>
-  <meta name="description" content="List of my solved Project Euler problems with links to solutions and short notes." />
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa;--glass:rgba(255,255,255,0.03)}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:linear-gradient(180deg,#071022 0%, #071a2a 100%);color:#e6eef8;line-height:1.45}
-    .wrap{max-width:960px;margin:40px auto;padding:24px}
-    header{display:flex;align-items:center;gap:16px}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
-    h1{margin:0;font-size:1.6rem}
-    p.lead{color:var(--muted);margin:6px 0 18px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza Nazim | Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .card h2{margin:0 0 8px;font-size:1.05rem}
-    .meta{font-size:0.9rem;color:var(--muted);margin-bottom:12px}
-    .desc{color:#d7e7ff;font-size:0.95rem;margin-bottom:12px}
-    .row{display:flex;gap:8px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:var(--accent);font-weight:600}
-    .small{font-size:0.85rem;color:var(--muted)}
-    footer{margin-top:22px;color:var(--muted);font-size:0.9rem}
+        :root {
+            --bg-color: #0f111a;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #00e6a8;
+            --card-bg: #1e212b;
+        }
 
-    /* simple responsive */
-    @media (max-width:520px){.wrap{padding:16px;margin:20px auto}.logo{width:48px;height:48px}}
-  </style>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .grades {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background-color: #2a2f3a;
+            border: 1px solid var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .badge span {
+            color: var(--accent);
+            margin-left: 5px;
+        }
+
+        pre {
+            background-color: #0d0f17;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #a6accd;
+        }
+
+        /* Syntax highlighting basics */
+        .kw { color: #89ddff; } /* Keywords */
+        .str { color: #c3e88d; } /* Strings */
+        .num { color: #f78c6c; } /* Numbers */
+        .func { color: #82aaff; } /* Functions */
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <header>
-      <div class="logo">PE</div>
-      <div>
-        <h1>Project Euler — Solved Problems</h1>
-        <p class="lead">A compact list of Project Euler problems I've solved, with short notes and links to solutions in this repo.</p>
-      </div>
-    </header>
 
-    <section style="margin-top:18px">
-      <div class="grid">
+    <div class="container">
+        <header>
+            <h1>Hamza Nazim</h1>
+            <p class="tagline">A-Level Student | Aspiring AI Engineer & Programmer</p>
+        </header>
 
-        <!-- Problem 1 -->
-        <article class="card">
-          <h2>Problem 1 — Multiples of 3 and 5</h2>
-          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
-          <p class="desc">Find the sum of all the multiples of 3 or 5 below 1000. I used a simple loop and arithmetic progressions for an O(1) alternative (closed-form).</p>
-          <div class="row">
-            <a class="btn" href="./solutions/problem001.py">View solution (problem001.py)</a>
-            <a class="btn" href="https://projecteuler.net/problem=1" target="_blank">Problem page</a>
-          </div>
-          <p class="small" style="margin-top:10px">Notes: include both iterative and formula versions in the repo; formula avoids iteration.</p>
-        </article>
+        <section>
+            <h2>About Me</h2>
+            <p>I am a Year 12 student currently studying <strong>Maths, Further Maths, Physics, and Computer Science</strong>. I have a deep passion for mathematics, the pure logic of programming, and AI engineering.</p>
+            
+            <h3>Academic Background (GCSEs)</h3>
+            <div class="grades">
+                <div class="badge">Mathematics <span>9</span></div>
+                <div class="badge">Physics <span>9</span></div>
+                <div class="badge">Chemistry <span>9</span></div>
+                <div class="badge">Biology <span>9</span></div>
+                <div class="badge">Computer Science <span>9</span></div>
+                <div class="badge">History <span>9</span></div>
+                <div class="badge">Economics <span>9</span></div>
+                <div class="badge">Spanish <span>8</span></div>
+                <div class="badge">English Language <span>8</span></div>
+                <div class="badge">English Literature <span>7</span></div>
+            </div>
+        </section>
 
-        <!-- Problem 2 -->
-        <article class="card">
-          <h2>Problem 2 — Even Fibonacci numbers</h2>
-          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
-          <p class="desc">Sum the even-valued Fibonacci numbers not exceeding four million. Implemented an efficient generator and used the fact every 3rd Fibonacci number is even.</p>
-          <div class="row">
-            <a class="btn" href="./solutions/problem002.py">View solution (problem002.py)</a>
-            <a class="btn" href="https://projecteuler.net/problem=2" target="_blank">Problem page</a>
-          </div>
-          <p class="small">Notes: O(n) time with linear iteration, O(1) memory.</p>
-        </article>
+        <section>
+            <h2>Current Endeavors</h2>
+            <p>I am constantly looking to push my technical boundaries. Currently, I am:</p>
+            <ul>
+                <li>Working through <strong>Harvard's CS50: Introduction to Artificial Intelligence with Python</strong>.</li>
+                <li>Honing my algorithmic thinking on <strong>Project Euler</strong> (15 problems solved so far).</li>
+            </ul>
+        </section>
 
-        <!-- Problem 3 -->
-        <article class="card">
-          <h2>Problem 3 — Largest prime factor</h2>
-          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
-          <p class="desc">Find the largest prime factor of 600851475143. I implemented trial division up to sqrt(n) with wheel optimization and removed small factors first.</p>
-          <div class="row">
-            <a class="btn" href="./solutions/problem003.py">View solution (problem003.py)</a>
-            <a class="btn" href="https://projecteuler.net/problem=3" target="_blank">Problem page</a>
-          </div>
-          <p class="small">Notes: optimized by removing factor 2 and checking odd divisors only.</p>
-        </article>
+        <section>
+            <h2>Future Projects</h2>
+            <p><strong>Physics-Based Machine Learning Model</strong><br>
+            I am planning to develop an ML model capable of accurately predicting the kinematics of a projectile—such as maximum height and range—given initial speed and launch angle, while specifically factoring in <strong>air resistance</strong>. This project will serve as a bridge between my physics A-level and my passion for AI.</p>
+        </section>
 
-        <!-- Problem 4 -->
-        <article class="card">
-          <h2>Problem 4 — Largest palindrome product</h2>
-          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
-          <p class="desc">Largest palindrome made from the product of two 3-digit numbers. Implemented nested loops with early break when possible and a palindrome test function.</p>
-          <div class="row">
-            <a class="btn" href="./solutions/problem004.py">View solution (problem004.py)</a>
-            <a class="btn" href="https://projecteuler.net/problem=4" target="_blank">Problem page</a>
-          </div>
-          <p class="small">Notes: consider iterating from largest downwards to find max earlier.</p>
-        </article>
+        <section>
+            <h2>Code Showcase: Project Euler #11</h2>
+            <p>This problem challenged me the most out of the 15 I've completed so far. The goal is to find the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in a 20x20 grid.</p>
+            
+<pre><code><span class="kw">grid</span> = [
+    [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
+    [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
+    [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
+    [52, 70, 95, 23, 4, 60, 11, 42, 69, 24, 68, 56, 1, 32, 56, 71, 37, 2, 36, 91],
+    [22, 31, 16, 71, 51, 67, 63, 89, 41, 92, 36, 54, 22, 40, 40, 28, 66, 33, 13, 80],
+    [24, 47, 32, 60, 99, 3, 45, 2, 44, 75, 33, 53, 78, 36, 84, 20, 35, 17, 12, 50],
+    [32, 98, 81, 28, 64, 23, 67, 10, 26, 38, 40, 67, 59, 54, 70, 66, 18, 38, 64, 70],
+    [67, 26, 20, 68, 2, 62, 12, 20, 95, 63, 94, 39, 63, 8, 40, 91, 66, 49, 94, 21],
+    [24, 55, 58, 5, 66, 73, 99, 26, 97, 17, 78, 78, 96, 83, 14, 88, 34, 89, 63, 72],
+    [21, 36, 23, 9, 75, 0, 76, 44, 20, 45, 35, 14, 0, 61, 33, 97, 34, 31, 33, 95],
+    [78, 17, 53, 28, 22, 75, 31, 67, 15, 94, 3, 80, 4, 62, 16, 14, 9, 53, 56, 92],
+    [16, 39, 5, 42, 96, 35, 31, 47, 55, 58, 88, 24, 0, 17, 54, 24, 36, 29, 85, 57],
+    [86, 56, 0, 48, 35, 71, 89, 7, 5, 44, 44, 37, 44, 60, 21, 58, 51, 54, 17, 58],
+    [19, 80, 81, 68, 5, 94, 47, 69, 28, 73, 92, 13, 86, 52, 17, 77, 4, 89, 55, 40],
+    [4, 52, 8, 83, 97, 35, 99, 16, 7, 97, 57, 32, 16, 26, 26, 79, 33, 27, 98, 66],
+    [88, 36, 68, 87, 57, 62, 20, 72, 3, 46, 33, 67, 46, 55, 12, 32, 63, 93, 53, 69],
+    [4, 42, 16, 73, 38, 25, 39, 11, 24, 94, 72, 18, 8, 46, 29, 32, 40, 62, 76, 36],
+    [20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4, 36, 16],
+    [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
+    [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
+]
 
-        <!-- Problem 6 -->
-        <article class="card">
-          <h2>Problem 6 — Sum square difference</h2>
-          <div class="meta">Solved: <strong>Yes</strong> • Language: <strong>Python</strong></div>
-          <p class="desc">Difference between the sum of the squares and the square of the sum for the first 100 natural numbers. Implemented using closed-form formulas for speed.</p>
-          <div class="row">
-            <a class="btn" href="./solutions/problem006.py">View solution (problem006.py)</a>
-            <a class="btn" href="https://projecteuler.net/problem=6" target="_blank">Problem page</a>
-          </div>
-          <p class="small">Notes: O(1) solution using formulas for sum(n) and sum(n^2).</p>
-        </article>
+max_values = []
 
-      </div>
-    </section>
+<span class="kw">def</span> <span class="func">vertical_product</span>(grid):
+    initial = 0
+    final = initial + 3
+    column_index = 0
+    max = grid[0][0] * grid[1][0] * grid[2][0] * grid[3][0]
 
+    <span class="kw">while</span> column_index &lt; 20:
+        initial = 0
+        final = initial + 3
+        <span class="kw">while</span> final &lt; 20:
+            product = grid[initial][column_index] * grid[initial + 1][column_index] * grid[initial + 2][column_index] * grid[final][column_index]
+            initial += 1
+            final = initial + 3
+            <span class="kw">if</span> product > max:
+                max = product
+        column_index += 1
+
+    <span class="kw">return</span> max
+
+<span class="kw">def</span> <span class="func">horizontal_product</span>(grid):
+    initial = 0
+    final = initial + 3
+    row_index = 0
+    max = grid[0][0] * grid[0][1] * grid[0][2] * grid[0][3]
+
+    <span class="kw">while</span> row_index &lt; 20:
+        initial = 0
+        final = initial + 3
+        <span class="kw">while</span> final &lt; 20:
+            product = grid[row_index][initial] * grid[row_index][initial + 1] * grid[row_index][initial + 2] * grid[row_index][final]
+            initial += 1
+            final = initial + 3
+            <span class="kw">if</span> product > max:
+                max = product
+        row_index += 1
+
+    <span class="kw">return</span> max
+
+<span class="kw">def</span> <span class="func">right_diagonal_product</span>(grid):
+    column_index = 0
+    counter = 0
+    max = grid[0][0] * grid[1][1] * grid[2][2] * grid[3][3]
+
+    <span class="kw">while</span> counter &lt; 17:
+        row_index = counter
+        <span class="kw">while</span> row_index &lt; 17 <span class="kw">and</span> column_index &lt; 17:
+            product = grid[row_index][column_index] * grid[row_index + 1][column_index + 1] * grid[row_index + 2][column_index + 2] * grid[row_index + 3][column_index + 3]
+            column_index += 1
+            <span class="kw">if</span> product > max:
+                max = product
+        counter += 1
+        column_index = 0
+
+    <span class="kw">return</span> max
+
+<span class="kw">def</span> <span class="func">left_diagonal_product</span>(grid):
+    column_index = 0
+    counter = 19
+    max = grid[3][0] * grid[2][1] * grid[1][2] * grid[0][3]
     
-  </main>
+    <span class="kw">while</span> counter > 2:
+        row_index = counter
+        <span class="kw">while</span> row_index > 2 <span class="kw">and</span> column_index &lt; 17:
+            product = grid[row_index][column_index] * grid[row_index - 1][column_index + 1] * grid[row_index - 2][column_index + 2] * grid[row_index - 3][column_index + 3]
+            column_index += 1
+            <span class="kw">if</span> product > max:
+                max = product
+        counter -= 1
+        column_index = 0
+
+    <span class="kw">return</span> max
+
+max_values.append(vertical_product(grid))
+max_values.append(horizontal_product(grid))
+max_values.append(right_diagonal_product(grid))
+max_values.append(left_diagonal_product(grid))
+
+<span class="func">print</span>(<span class="str">f"The greatest product of 4 adjacent numbers in the same direction is {max(max_values)}"</span>)</code></pre>
+        </section>
+    </div>
 </body>
 </html>
-
