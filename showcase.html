@@ -108,6 +108,7 @@
         .str { color: #c3e88d; } 
         .num { color: #f78c6c; } 
         .func { color: #82aaff; } 
+        .com { color: #5c6370; font-style: italic; } 
         
         a {
             color: var(--accent);
@@ -124,7 +125,7 @@
     <nav>
         <a href="index.html">About</a>
         <a href="endeavors.html">Current Endeavors</a>
-        <a href="projects.html">Future Projects</a>
+        <a href="projects.html">Projects</a>
         <a href="showcase.html" class="active">Code Showcase</a>
     </nav>
 
@@ -135,8 +136,41 @@
         </header>
 
         <section>
-            <h2>Code Showcase: Project Euler #11</h2>
-            <p>This problem challenged me the most out of the 15 I've completed so far. The goal is to find the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in a 20x20 grid.</p>
+            <h2>Code Showcase: <a href="https://projecteuler.net/problem=18" target="_blank">Project Euler #18</a></h2>
+            <p>Maximum Path Sum I</p>
+            
+            <h3>Reflection</h3>
+            <blockquote style="border-left: 3px solid var(--accent); padding-left: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 25px;">
+                Problem 18 was my introduction to dynamic programming. When I first saw this problem, I thought it was next to impossible. With no real structure in order to find the greatest path, I decided to research and teach myself dynamic programming. After a couple of videos on the topic, I started writing out a solution on pen and paper with one of the fundamental concepts of dynamic programming in mind - create subproblems for the problem, and more subproblems from those subproblems, solve each of these subproblems until the main problem has been solved. Eventually, I coded my written solution and was able to solve this problem.
+            </blockquote>
+            
+<pre><code><span class="kw">from</span> data <span class="kw">import</span> triangle <span class="com"># The list of lists that I kept in another python file</span>
+
+new_path = []
+row = <span class="func">len</span>(triangle) - <span class="num">1</span>
+
+<span class="com"># Looping from the last row and working upwards, finding the optimal path from the bottom</span>
+<span class="kw">while</span> row >= <span class="num">0</span>:
+    <span class="kw">if</span> row == <span class="func">len</span>(triangle) - <span class="num">1</span>: <span class="com"># Initialising for the first row</span>
+        path = triangle[row]
+
+    <span class="kw">else</span>:
+        path = new_path <span class="com"># Updates the path to make it the sum of the previous indexes</span>
+        new_path = [] <span class="com"># Clears new_path to hold the sum on the previous indexes</span>
+
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="func">range</span>(row):
+        <span class="com"># Find the best way to get to the index directly above it</span>
+        val = <span class="func">max</span>((path[i] + triangle[row - <span class="num">1</span>][i]), (path[i + <span class="num">1</span>] + triangle[row - <span class="num">1</span>][i]))
+        new_path.append(val) <span class="com"># Adds it to the new_path</span>
+
+    row -= <span class="num">1</span>
+
+<span class="func">print</span>(path)</code></pre>
+        </section>
+
+        <section>
+            <h2>Code Showcase: <a href="https://projecteuler.net/problem=11" target="_blank">Project Euler #11</a></h2>
+            <p>Largest Product in a Grid</p>
             
             <h3>Reflection</h3>
             <blockquote style="border-left: 3px solid var(--accent); padding-left: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 25px;">
@@ -169,74 +203,74 @@
 max_values = []
 
 <span class="kw">def</span> <span class="func">vertical_product</span>(grid):
-    initial = 0
-    final = initial + 3
-    column_index = 0
-    max = grid[0][0] * grid[1][0] * grid[2][0] * grid[3][0]
+    initial = <span class="num">0</span>
+    final = initial + <span class="num">3</span>
+    column_index = <span class="num">0</span>
+    max = grid[<span class="num">0</span>][<span class="num">0</span>] * grid[<span class="num">1</span>][<span class="num">0</span>] * grid[<span class="num">2</span>][<span class="num">0</span>] * grid[<span class="num">3</span>][<span class="num">0</span>]
 
-    <span class="kw">while</span> column_index &lt; 20:
-        initial = 0
-        final = initial + 3
-        <span class="kw">while</span> final &lt; 20:
-            product = grid[initial][column_index] * grid[initial + 1][column_index] * grid[initial + 2][column_index] * grid[final][column_index]
-            initial += 1
-            final = initial + 3
+    <span class="kw">while</span> column_index &lt; <span class="num">20</span>:
+        initial = <span class="num">0</span>
+        final = initial + <span class="num">3</span>
+        <span class="kw">while</span> final &lt; <span class="num">20</span>:
+            product = grid[initial][column_index] * grid[initial + <span class="num">1</span>][column_index] * grid[initial + <span class="num">2</span>][column_index] * grid[final][column_index]
+            initial += <span class="num">1</span>
+            final = initial + <span class="num">3</span>
             <span class="kw">if</span> product > max:
                 max = product
-        column_index += 1
+        column_index += <span class="num">1</span>
 
     <span class="kw">return</span> max
 
 <span class="kw">def</span> <span class="func">horizontal_product</span>(grid):
-    initial = 0
-    final = initial + 3
-    row_index = 0
-    max = grid[0][0] * grid[0][1] * grid[0][2] * grid[0][3]
+    initial = <span class="num">0</span>
+    final = initial + <span class="num">3</span>
+    row_index = <span class="num">0</span>
+    max = grid[<span class="num">0</span>][<span class="num">0</span>] * grid[<span class="num">0</span>][<span class="num">1</span>] * grid[<span class="num">0</span>][<span class="num">2</span>] * grid[<span class="num">0</span>][<span class="num">3</span>]
 
-    <span class="kw">while</span> row_index &lt; 20:
-        initial = 0
-        final = initial + 3
-        <span class="kw">while</span> final &lt; 20:
-            product = grid[row_index][initial] * grid[row_index][initial + 1] * grid[row_index][initial + 2] * grid[row_index][final]
-            initial += 1
-            final = initial + 3
+    <span class="kw">while</span> row_index &lt; <span class="num">20</span>:
+        initial = <span class="num">0</span>
+        final = initial + <span class="num">3</span>
+        <span class="kw">while</span> final &lt; <span class="num">20</span>:
+            product = grid[row_index][initial] * grid[row_index][initial + <span class="num">1</span>] * grid[row_index][initial + <span class="num">2</span>] * grid[row_index][final]
+            initial += <span class="num">1</span>
+            final = initial + <span class="num">3</span>
             <span class="kw">if</span> product > max:
                 max = product
-        row_index += 1
+        row_index += <span class="num">1</span>
 
     <span class="kw">return</span> max
 
 <span class="kw">def</span> <span class="func">right_diagonal_product</span>(grid):
-    column_index = 0
-    counter = 0
-    max = grid[0][0] * grid[1][1] * grid[2][2] * grid[3][3]
+    column_index = <span class="num">0</span>
+    counter = <span class="num">0</span>
+    max = grid[<span class="num">0</span>][<span class="num">0</span>] * grid[<span class="num">1</span>][<span class="num">1</span>] * grid[<span class="num">2</span>][<span class="num">2</span>] * grid[<span class="num">3</span>][<span class="num">3</span>]
 
-    <span class="kw">while</span> counter &lt; 17:
+    <span class="kw">while</span> counter &lt; <span class="num">17</span>:
         row_index = counter
-        <span class="kw">while</span> row_index &lt; 17 <span class="kw">and</span> column_index &lt; 17:
-            product = grid[row_index][column_index] * grid[row_index + 1][column_index + 1] * grid[row_index + 2][column_index + 2] * grid[row_index + 3][column_index + 3]
-            column_index += 1
+        <span class="kw">while</span> row_index &lt; <span class="num">17</span> <span class="kw">and</span> column_index &lt; <span class="num">17</span>:
+            product = grid[row_index][column_index] * grid[row_index + <span class="num">1</span>][column_index + <span class="num">1</span>] * grid[row_index + <span class="num">2</span>][column_index + <span class="num">2</span>] * grid[row_index + <span class="num">3</span>][column_index + <span class="num">3</span>]
+            column_index += <span class="num">1</span>
             <span class="kw">if</span> product > max:
                 max = product
-        counter += 1
-        column_index = 0
+        counter += <span class="num">1</span>
+        column_index = <span class="num">0</span>
 
     <span class="kw">return</span> max
 
 <span class="kw">def</span> <span class="func">left_diagonal_product</span>(grid):
-    column_index = 0
-    counter = 19
-    max = grid[3][0] * grid[2][1] * grid[1][2] * grid[0][3]
+    column_index = <span class="num">0</span>
+    counter = <span class="num">19</span>
+    max = grid[<span class="num">3</span>][<span class="num">0</span>] * grid[<span class="num">2</span>][<span class="num">1</span>] * grid[<span class="num">1</span>][<span class="num">2</span>] * grid[<span class="num">0</span>][<span class="num">3</span>]
     
-    <span class="kw">while</span> counter > 2:
+    <span class="kw">while</span> counter > <span class="num">2</span>:
         row_index = counter
-        <span class="kw">while</span> row_index > 2 <span class="kw">and</span> column_index &lt; 17:
-            product = grid[row_index][column_index] * grid[row_index - 1][column_index + 1] * grid[row_index - 2][column_index + 2] * grid[row_index - 3][column_index + 3]
-            column_index += 1
+        <span class="kw">while</span> row_index > <span class="num">2</span> <span class="kw">and</span> column_index &lt; <span class="num">17</span>:
+            product = grid[row_index][column_index] * grid[row_index - <span class="num">1</span>][column_index + <span class="num">1</span>] * grid[row_index - <span class="num">2</span>][column_index + <span class="num">2</span>] * grid[row_index - <span class="num">3</span>][column_index + <span class="num">3</span>]
+            column_index += <span class="num">1</span>
             <span class="kw">if</span> product > max:
                 max = product
-        counter -= 1
-        column_index = 0
+        counter -= <span class="num">1</span>
+        column_index = <span class="num">0</span>
 
     <span class="kw">return</span> max
 
@@ -245,7 +279,7 @@ max_values.append(horizontal_product(grid))
 max_values.append(right_diagonal_product(grid))
 max_values.append(left_diagonal_product(grid))
 
-<span class="func">print</span>(<span class="str">f"The greatest product of 4 adjacent numbers in the same direction is {max(max_values)}"</span>)</code></pre>
+<span class="func">print</span>(<span class="str">f"The greatest product of 4 adjacent numbers in the same direction is {<span class="func">max</span>(max_values)}"</span>)</code></pre>
         </section>
     </div>
 </body>
