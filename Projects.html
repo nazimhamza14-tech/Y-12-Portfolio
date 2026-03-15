@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza Nazim | Projects</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
+
+        :root {
+            --bg-color: #0f111a;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #00e6a8;
+            --card-bg: #1e212b;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: rgba(15, 17, 26, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        pre {
+            background-color: #0d0f17;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #a6accd;
+        }
+
+        /* Syntax Highlighting Colors */
+        .kw { color: #89ddff; } 
+        .str { color: #c3e88d; } 
+        .num { color: #f78c6c; } 
+        .func { color: #82aaff; } 
+        .com { color: #5c6370; font-style: italic; } 
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">About</a>
+        <a href="endeavors.html">Current Endeavors</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="showcase.html">Code Showcase</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Hamza Nazim</h1>
+            <p class="tagline">A-Level Student | Aspiring ML Engineer </p>
+        </header>
+
+        <section>
+            <h2>Linear Regression from Scratch</h2>
+            
+            <h3>Reflection</h3>
+            <blockquote style="border-left: 3px solid var(--accent); padding-left: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 25px;">
+                This was my introduction to Machine Learning. I decided to build a linear regression model from scratch in order to take a look under the hood of what this model was actually doing. It was by building this that I learnt about weights and biases, costs, gradient descent and even how to plot using matplotlib. With my understanding of linear regression vastly improved and my curiosity satisfied thanks to this build, I can now move towards implementing the projectile motion project using scikit learn without worrying about a massive black box in my code.
+            </blockquote>
+            
+<pre><code><span class="com"># Imports</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+<span class="com"># Constants</span>
+STARTING_X = <span class="num">1</span>
+ENDING_X = <span class="num">50</span>
+NO_OF_PLOTS = <span class="num">100</span>
+GRADIENT = <span class="num">3</span>
+INTERCEPT = <span class="num">1</span>
+NO_OF_EPOCHS = <span class="num">100</span>
+
+<span class="com"># Creating the model</span>
+<span class="kw">class</span> <span class="func">MyLinearRegression</span>:
+    <span class="kw">def</span> <span class="func">__init__</span>(self, x, y, epoch, LEARNING_CONSTANT = <span class="num">0.00001</span>):
+        self.x = x
+        self.y = y
+        self.points = x.size
+        self.LEARNING_CONSTANT = LEARNING_CONSTANT
+        self.weight = <span class="num">0</span>
+        self.bias = <span class="num">1</span>
+        self.cost = <span class="kw">None</span>
+        self.epoch = epoch
+
+    <span class="com"># The model aims to obtain a weight and a bias such that there is no change in cost</span>
+    <span class="kw">def</span> <span class="func">cost_error</span>(self):
+        error = (self.y - (self.weight * self.x + self.bias)) **<span class="num">2</span> <span class="com"># Formula to calculate the cost</span>
+        total = np.sum(error)
+
+        <span class="com"># Returns the cost as per the formula for the mean squared error (MSE) - the average squared distance between predicted values and actual values</span>
+        <span class="kw">return</span> total / self.points
+
+    <span class="kw">def</span> <span class="func">train</span>(self):
+        <span class="com"># Trains the model by updating the weight and cost and prints the final weight and cost</span>
+        <span class="func">print</span>(<span class="str">f"Initial weight (gradient): {self.weight}, initial bias {self.bias}"</span>)
+        <span class="kw">for</span> i <span class="kw">in</span> <span class="func">range</span>(self.epoch):
+            self.update_weights()
+
+        self.cost = self.cost_error()
+        <span class="func">print</span>(<span class="str">f"Final weight (gradient): {self.weight}, final bias: {self.bias}"</span>)
+        <span class="func">print</span>(<span class="str">f"Actual gradient: {GRADIENT}, actual intercept (bias) {INTERCEPT}"</span>)
+        <span class="kw">return</span> self.weight, self.bias
+
+    <span class="kw">def</span> <span class="func">update_weights</span>(self):
+        difference = <span class="kw">None</span>
+        weight_deriv = <span class="num">0</span>
+        bias_deriv = <span class="num">0</span>
+
+        <span class="com"># This is the essence of gradient descent in linear regression. First, the difference between the actual y value and predicted y value is found</span>
+        difference = self.y - (self.weight * self.x + self.bias)
+
+        <span class="com"># Differentiate the difference in order to find the gradient, this comes form the formula for the cost</span>
+        weight_deriv = np.sum(-<span class="num">2</span> * difference * self.x)
+
+        <span class="com"># Differentiate again to find the y-intercept</span>
+        bias_deriv = np.sum(-<span class="num">2</span> * difference)
+
+        <span class="com"># Adjust both the weight (gradient) and bias (intercept) ever so slightly, allowing the values to move closer and closer to the true value</span>
+        self.weight -= (weight_deriv / self.points) * self.LEARNING_CONSTANT <span class="com"># Finds average gradient across all data points, multiplies by the learning rate and subtracts</span>
+        self.bias -= (bias_deriv / self.points) * self.LEARNING_CONSTANT <span class="com"># Again finds the average intercept across all data points, multiples by the learning constant and subtracts</span>
+
+<span class="com"># Function used to check the effectiveness of the model given a number of epochs, the graph for the model as well as the predicted gradient and intercept is displayed</span>
+<span class="kw">def</span> <span class="func">check</span>(x, y, epochs):
+
+    model = MyLinearRegression(x, y, epochs)
+    line_properties = model.train()
+
+    predicted_gradient, predicted_intercept = line_properties[<span class="num">0</span>], line_properties[<span class="num">1</span>]
+
+    predicted_x = np.linspace(STARTING_X, ENDING_X, NO_OF_PLOTS)
+    predicted_y = (predicted_gradient * predicted_x) + predicted_intercept
+
+    plt.plot(predicted_x, predicted_y, color = <span class="str">"red"</span>, label = <span class="str">"Predicted line"</span>)
+    plt.plot(x, y, label = <span class="str">f"y = {GRADIENT}x + {INTERCEPT}"</span>)
+    plt.legend()
+    plt.title(<span class="str">f"After {NO_OF_EPOCHS} epochs"</span>)
+    plt.show()
+
+<span class="com"># Used to compare the predicted X and Y values to the actual values as stated below</span>
+x = np.linspace(STARTING_X, ENDING_X, NO_OF_PLOTS)
+y = (GRADIENT * x) + INTERCEPT
+
+check(x, y, NO_OF_EPOCHS)</code></pre>
+        </section>
+
+        <section>
+            <h2>Projectile Motion Simulation (No Air Resistance)</h2>
+            
+            <h3>Reflection</h3>
+            <blockquote style="border-left: 3px solid var(--accent); padding-left: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 25px;">
+                This is the first version of my projectile motion project with the absence of air resistance. My goal is to find out how well ML can simulate physical systems, and a large part of that is seeing how well it can find relationships between data. So, I started by seeing how well my model could learn the relationship between the variables in the SUVAT equations that are used to find the max height and range of a projectile. In this code I ensured to compare between linear regression and polynomial regression and see how well each of them fared.
+            </blockquote>
+            
+<pre><code><span class="com"># Imports</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> PolynomialFeatures
+
+np.set_printoptions(suppress=<span class="kw">True</span>)
+rng = np.random.default_rng(seed = <span class="num">42</span>) <span class="com"># Allows for consistent reproducibility</span>
+
+<span class="com"># Constants</span>
+G = <span class="num">9.81</span>
+MIN_VELOCITY = <span class="num">10</span>
+MAX_VELOCITY = <span class="num">50</span>
+NUM_TEST_SAMPLES = <span class="num">250</span>
+NUM_TRAINING_SAMPLES = <span class="num">1000</span>
+MIN_ANGLE = <span class="num">0</span>
+MAX_ANGLE = <span class="num">90</span>
+
+<span class="kw">def</span> <span class="func">main</span>():
+    initial_velocities = rng.integers(MIN_VELOCITY, MAX_VELOCITY, NUM_TRAINING_SAMPLES) <span class="com"># Initial velocities training data</span>
+    degrees = rng.integers(MIN_ANGLE, MAX_ANGLE, NUM_TRAINING_SAMPLES) <span class="com"># Launch angles training data</span>
+    rad_angles = np.deg2rad(degrees) <span class="com"># Convert launch angles into radians</span>
+    labels = (initial_velocities ** <span class="num">2</span> * np.sin(rad_angles) ** <span class="num">2</span>) / (<span class="num">2</span> * G), (initial_velocities ** <span class="num">2</span> * np.sin(<span class="num">2</span> * rad_angles)) / G <span class="com"># Test data for the correct outputs, uses equations to find max height and range</span>
+
+    <span class="com"># Stack the velocities and angles into a 2D array to be accepted by the model, do the same for the max heights and ranges</span>
+    initial_conditions = np.column_stack((initial_velocities, rad_angles))
+    properties = np.column_stack(labels) <span class="com"># Properties of the projectile motion - max height and range</span>
+
+    <span class="com"># First using standard Linear Regression</span>
+    model = LinearRegression()
+    model.fit(initial_conditions, properties)
+
+    <span class="com"># All the test data</span>
+    test_initial_velocities = rng.integers(MIN_VELOCITY, MAX_VELOCITY, NUM_TEST_SAMPLES)
+    test_degrees = rng.integers(MIN_ANGLE, MAX_ANGLE, NUM_TEST_SAMPLES)
+    test_rad_angles = np.deg2rad(test_degrees)
+    test_properties = np.column_stack(((test_initial_velocities ** <span class="num">2</span> * np.sin(test_rad_angles) ** <span class="num">2</span>) / (<span class="num">2</span> * G), (test_initial_velocities ** <span class="num">2</span> * np.sin(<span class="num">2</span> * test_rad_angles)) / G))
+    test_initial_conditions = np.column_stack((test_initial_velocities, test_rad_angles))
+
+    <span class="func">print</span>(<span class="str">f"Score for the model using Linear Regression (3 DPs): {round(model.score(test_initial_conditions, test_properties), 3)}"</span>)
+
+    <span class="com"># Using polynomial regression</span>
+    poly = PolynomialFeatures(degree = <span class="num">2</span>, include_bias = <span class="kw">True</span>)
+
+    initial_conditions_poly = poly.fit_transform(initial_conditions) <span class="com"># fit() determines the optimal coefficients for the polynomial equation, while transform() applies the transformation from fit()</span>
+    test_conditions_poly = poly.transform(test_initial_conditions) <span class="com"># Do not fit this data, you only fit the training data to find the optimal coefficients, here you already have the coefficients</span>
+    <span class="com"># The output y values do not need to be changed at all because we need those exact values in that format to test the model</span>
+
+    <span class="com"># From here, just train the model as normal as if using linear regression</span>
+    model.fit(initial_conditions_poly, properties)
+    predictions = model.predict(test_conditions_poly)
+    <span class="func">print</span>(<span class="str">f"Score for the model using Polynomial Regression (3 DPs): {round(model.score(test_conditions_poly, test_properties), 3)}"</span>)
+
+    <span class="com"># Showing how the predicted height compares with the actual max height</span>
+    plt.scatter(test_properties[:,<span class="num">0</span>], predictions[:,<span class="num">0</span>], label=<span class="str">"Max Height"</span>, marker = <span class="str">"x"</span>)
+    plt.xlabel(<span class="str">"Actual Max Height"</span>)
+    plt.ylabel(<span class="str">"Predicted Max Height"</span>)
+    plt.title(<span class="str">"Polynomial Regression Predictions"</span>)
+
+    plt.legend()
+    plt.show()
+
+    <span class="com"># Showing how the predicted range compares with the actual range</span>
+    plt.scatter(test_properties[:,<span class="num">1</span>], predictions[:,<span class="num">1</span>], label=<span class="str">"Range"</span>, color = <span class="str">"orange"</span>)
+    plt.xlabel(<span class="str">"Actual Range"</span>)
+    plt.ylabel(<span class="str">"Predicted Range"</span>)
+    plt.title(<span class="str">"Polynomial Regression Predictions"</span>)
+
+    plt.legend()
+    plt.show()
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    main()</code></pre>
+        </section>
+
+        <section>
+            <h2>Future Iterations</h2>
+            <p><strong>Factoring in Air Resistance</strong><br>
+            With the base polynomial regression model working beautifully for standard SUVAT equations, my next goal is to introduce air resistance (drag). This will shift the calculations from clean mathematical formulas into numerical approximations (like Euler's or Runge-Kutta methods), pushing my model to learn much more complex, real-world physical relationships.</p>
+        </section>
+    </div>
+</body>
+</html>
