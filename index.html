@@ -3,177 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamza Nazim | About</title>
+    <title>Hamza Nazim | ML & AI Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
-
+        /* CSS Styling - Clean & Minimalist */
         :root {
-            --bg-color: #0f111a;
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent: #00e6a8;
-            --card-bg: #1e212b;
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --bg-color: #fdfdfd;
+            --accent: #2c3e50;
+            --border-color: #eaeaea;
         }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
             background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav {
-            background-color: rgba(15, 17, 26, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 20px 0;
-            border-bottom: 1px solid #333;
-            text-align: center;
-        }
-
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 2rem;
+            scroll-behavior: smooth;
         }
 
-        header {
-            margin-bottom: 50px;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin: 0 0 10px 0;
-            color: #ffffff;
-        }
-
-        h2 {
+        h1, h2, h3, h4 {
+            font-weight: 600;
             color: var(--accent);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            margin-top: 2rem;
         }
 
-        .tagline {
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-top: 4rem; }
+        h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+        p { color: var(--text-muted); }
+
+        /* Intro Section */
+        .hero {
+            padding: 4rem 0 2rem 0;
+        }
+        .subtitle {
             font-size: 1.2rem;
             color: var(--text-muted);
-            margin: 0;
+            margin-top: 0;
+        }
+        .overview {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-top: 1.5rem;
+            line-height: 1.8;
         }
 
-        section {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        /* Grades Grid */
+        .grades-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
-
-        .grades {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .badge {
-            background-color: #2a2f3a;
-            border: 1px solid var(--accent);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .badge span {
-            color: var(--accent);
-            margin-left: 5px;
-        }
-
-        /* I left the code formatting CSS in here so you have a master template */
-        pre {
-            background-color: #0d0f17;
-            padding: 20px;
+        .grade-item {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
             border-radius: 6px;
-            overflow-x: auto;
-            max-height: 400px;
-            overflow-y: auto;
-            border: 1px solid #333;
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .grade-item strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--text-main);
         }
 
-        code {
-            font-family: 'Fira Code', monospace;
+        /* Buttons & Links */
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--accent);
+            color: #fff !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #1a252f;
+            border-bottom: none;
+        }
+
+        /* Text Content Blocks */
+        .text-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #d0d7de;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: #333;
+            border-radius: 0 6px 6px 0;
+        }
+        .text-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Error Block for Gradient Descent */
+        .error-block {
+            background-color: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: #991b1b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 0.9rem;
-            color: #a6accd;
+            border-radius: 0 6px 6px 0;
         }
 
-        .kw { color: #89ddff; } 
-        .str { color: #c3e88d; } 
-        .num { color: #f78c6c; } 
-        .func { color: #82aaff; } 
+        /* Image Containers */
+        .img-container {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .img-container img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .img-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-bottom: 2rem solid transparent; /* extra padding at bottom */
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
         
         a {
             color: var(--accent);
             text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s ease;
         }
-        
         a:hover {
-            text-decoration: underline;
+            border-bottom: 1px solid var(--accent);
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="index.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="showcase.html">Code Showcase</a>
-    <a href="endeavors.html">Current Endeavors</a>
-</nav>
+    <header class="hero">
+        <h1>Hamza Nazim</h1>
+        <p class="subtitle">A-Level Student | Aspiring Machine Learning & AI Engineer</p>
+        <p class="overview">
+            In this project, I aimed to build models that accurately predict the maximum height and range of a projectile given its initial speed and launch angle. More importantly however, I took the time to understand the underlying mathematics and physics that power my physics engines and machine learning models.
+        </p>
+    </header>
 
-    <div class="container">
-<header style="text-align: center; margin-bottom: 50px; border-bottom: 2px solid var(--accent); padding-bottom: 20px;">
-    <h1>Hamza Nazim</h1>
-    <p class="tagline">A-Level Student | Aspiring ML Engineer</p>
-</header>
+    <section id="academics">
+        <h2>Academic Background</h2>
+        <p>I am currently studying Maths, Further Maths, Physics, and Computer Science at A-Level (Predicted 4 A*s). Below is my GCSE academic record:</p>
+        
+        <div class="grades-container">
+            <div class="grade-item">Maths <strong>9</strong></div>
+            <div class="grade-item">Computer Science <strong>9</strong></div>
+            <div class="grade-item">Physics <strong>9</strong></div>
+            <div class="grade-item">Chemistry <strong>9</strong></div>
+            <div class="grade-item">Economics <strong>9</strong></div>
+            <div class="grade-item">Biology <strong>9</strong></div>
+            <div class="grade-item">History <strong>9</strong></div>
+            <div class="grade-item">Spanish <strong>8</strong></div>
+            <div class="grade-item">English Literature <strong>8</strong></div>
+            <div class="grade-item">English Language <strong>7</strong></div>
+        </div>
+    </section>
 
-        <section>
-            <h2>About Me</h2>
-            <p>I am a Year 12 student currently studying <strong>Maths, Further Maths, Physics, and Computer Science</strong>. I have a deep passion for mathematics, the pure logic of programming, and machine learning.</p>
-            
-            <h3>Academic Background (GCSEs)</h3>
-            <div class="grades">
-                <div class="badge">Mathematics <span>9</span></div>
-                <div class="badge">Physics <span>9</span></div>
-                <div class="badge">Chemistry <span>9</span></div>
-                <div class="badge">Biology <span>9</span></div>
-                <div class="badge">Computer Science <span>9</span></div>
-                <div class="badge">History <span>9</span></div>
-                <div class="badge">Economics <span>9</span></div>
-                <div class="badge">Spanish <span>8</span></div>
-                <div class="badge">English Language <span>8</span></div>
-                <div class="badge">English Literature <span>7</span></div>
-            </div>
-        </section>
-    </div>
+    <section id="projects">
+        <h2>Engineering & Machine Learning Projects</h2>
+        <a href="https://github.com/nazimhamza14-tech/Projectile-Motion---Machine-Learning" target="_blank" class="btn">View Full Project on GitHub &rarr;</a>
+
+        <h3>1. Custom Physics Engines (Training Data Generation)</h3>
+        <div class="text-block">
+            <p>Initially, I was drawn to using the forward Euler method, a simple first order method to simulate a projectiles trajectory. However fine-tuning the time step was a tedious task - a time step too large and the simulation becomes very numerically unstable, a time step too small and the computational expense of the simulation skyrockets. Furthermore it just wasn't as accurate as other methods because it assumed velocity and acceleration stayed constant throughout the entire time step. This led me to pursuing a better method for simulating the trajectory, the Runge-Kutta 4 method.</p>
+            <p>The RK4 is a 4th order method that I used to simulate a trajectory after the shortcomings of the forward Euler. The RK4 method <em>doesn't</em> assume constant velocity or acceleration during the time step, allowing the trajectory to be far more accurate. Furthermore when the time step is halved, the error in the RK4 method plummets by a factor of <em>16</em> as compared to the forward Euler methods error which would drop by a factor of 2. So this method doesnt require as small of a time step and is far more accurate, which is computationally much cheaper.</p>
+        </div>
+        
+        <div class="img-container">
+            <img src="RK4-graph.png" alt="RK4 Projectile Trajectory Graph">
+            <p class="img-caption">RK4 simulated trajectory for a padel ball (Initial velocity: 30m/s, Launch angle: 45°).</p>
+        </div>
+
+        <h3>2. Linear Regression via Gradient Descent</h3>
+        <div class="text-block">
+            <p>Now that I had accurately simulated the trajectory, I had acquired my training data. The next step was to build the model. I started by looking into Linear Regression using gradient descent, which I used Imperials "Mathematics for Machine Learning" course to truly understand the underlying maths behind the model. So I derived the equation by hand and implemented the model from scratch.</p>
+            <p>This model required fine-tuning parameters such as the learning rate, number of epochs (passes) and also the number of features I gave the model. Since this was an iterative approach, the model needed thousands of epochs to perform somewhat accurately, however this was far too computationally expensive and simply not accurate enough. Furthermore when I attempted polynomial regression, the accuracy was laughable. Of course since projectile motion is <em>fundamentally</em> non-linear, I needed a better model. The GD regression model couldn't even produce a graph of the curve without running into an overflow error, demonstrating its inability to properly deal with higher degree polynomials.</p>
+        </div>
+
+        <div class="error-block">
+            > OverflowError: math range error<br>
+            > Output exceeds computational limits for higher degree polynomials during Gradient Descent.
+        </div>
+
+        <h3>3. Linear Regression via Normal Equation</h3>
+        <div class="text-block">
+            <p>I soon learned that the exact weights that govern a curve can in fact be calculated in one step - one calculation. No loops, no iterations. This was done using the closed form normal equation. After learning the maths and deriving the equation by hand once again, I implemented this new regression model.</p>
+            <p>This model performed far better than the gradient descent one, computationally much cheaper while also being far more accurate. Most importantly, the model had no trouble with higher degree polynomial equations. This was the model to use.</p>
+        </div>
+        
+        <div class="img-container">
+            <img src="image_e157a8.png" alt="Normal Equation Model Evaluation Graph">
+            <p class="img-caption">Model evaluation utilizing the Normal Equation for the curve y = 4x³ - 6x² + 7x - 5.</p>
+        </div>
+        
+        <h3>Next Steps: Neural Networks</h3>
+        <p>I am currently applying the mathematics from the Imperial MML course to build a neural network from scratch to further optimize these predictions.</p>
+    </section>
+
+    <section id="supercurriculars">
+        <h2>Algorithmic Problem Solving</h2>
+        <p>To hone my discrete mathematics and algorithmic efficiency, I actively participate in computational problem-solving platforms.</p>
+        
+        <h3>Project Euler</h3>
+        <p>I have currently solved 23 problems. Below is a breakdown of a pivotal challenge and how I optimized my solution.</p>
+
+        <h4><a href="https://projecteuler.net/problem=18" target="_blank">Problem #18: Maximum Path Sum I</a></h4>
+        <div class="text-block">
+            <p>This was my introduction to dynamic programming. Plainly put - this problem is impossible without it. By learning to repeatedly create sub-problems for the problem, and sub-problems further still, I was able to grasp dynamic programming and obtain a solution.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Designed and built by Hamza Nazim &copy; 2026</p>
+        <p>
+            <a href="https://github.com/nazimhamza14-tech" target="_blank">GitHub</a> | 
+            <a href="mailto:nazimhamza14@gmail.com">Contact</a>
+        </p>
+    </footer>
+
 </body>
 </html>
