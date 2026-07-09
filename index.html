@@ -94,6 +94,49 @@
             border-bottom: none;
         }
 
+        /* Dropdown Menus (Accordion) */
+        .project-dropdown {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+        .project-dropdown[open] {
+            padding-bottom: 1.5rem;
+        }
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 1rem 0;
+            list-style: none; /* Hides default marker in standard browsers */
+            position: relative;
+            outline: none;
+            margin: 0;
+        }
+        .project-title::-webkit-details-marker {
+            display: none; /* Hides default marker in Safari/Chrome */
+        }
+        .project-title::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: var(--accent);
+        }
+        .project-dropdown[open] .project-title::after {
+            content: '−';
+        }
+        .project-dropdown[open] .project-title {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
         /* Text Content Blocks */
         .text-block {
             background-color: #f8f9fa;
@@ -102,6 +145,9 @@
             margin: 1.5rem 0;
             color: #333;
             border-radius: 0 6px 6px 0;
+        }
+        .text-block p:first-child {
+            margin-top: 0;
         }
         .text-block p:last-child {
             margin-bottom: 0;
@@ -141,7 +187,7 @@
         footer {
             margin-top: 5rem;
             padding-top: 2rem;
-            border-bottom: 2rem solid transparent; /* extra padding at bottom */
+            border-bottom: 2rem solid transparent;
             border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
@@ -196,38 +242,44 @@
         
         <a href="https://github.com/nazimhamza14-tech/Projectile-Motion---Machine-Learning" target="_blank" class="btn">View Full Project on GitHub &rarr;</a>
 
-        <h3>1. Custom Physics Engines (Training Data Generation)</h3>
-        <div class="text-block">
-            <p>Initially, I was drawn to using the forward Euler method, a simple first order method to simulate a projectiles trajectory. However fine-tuning the time step was a tedious task - a time step too large and the simulation becomes very numerically unstable, a time step too small and the computational expense of the simulation skyrockets. Furthermore it just wasn't as accurate as other methods because it assumed velocity and acceleration stayed constant throughout the entire time step. This led me to pursuing a better method for simulating the trajectory, the Runge-Kutta 4 method.</p>
-            <p>The RK4 is a 4th order method that I used to simulate a trajectory after the shortcomings of the forward Euler. The RK4 method <em>doesn't</em> assume constant velocity or acceleration during the time step, allowing the trajectory to be far more accurate. Furthermore when the time step is halved, the error in the RK4 method plummets by a factor of <em>16</em> as compared to the forward Euler methods error which would drop by a factor of 2. So this method doesnt require as small of a time step and is far more accurate, which is computationally much cheaper.</p>
-        </div>
-        
-        <div class="img-container">
-            <img src="RK4-graph.png" alt="RK4 Projectile Trajectory Graph">
-            <p class="img-caption">RK4 simulated trajectory for a padel ball (Initial velocity: 30m/s, Launch angle: 45°).</p>
-        </div>
+        <details class="project-dropdown">
+            <summary class="project-title">1. Custom Physics Engines (Training Data Generation)</summary>
+            <div class="text-block">
+                <p>Initially, I was drawn to using the forward Euler method, a simple first order method to simulate a projectiles trajectory. However fine-tuning the time step was a tedious task - a time step too large and the simulation becomes very numerically unstable, a time step too small and the computational expense of the simulation skyrockets. Furthermore it just wasn't as accurate as other methods because it assumed velocity and acceleration stayed constant throughout the entire time step. This led me to pursuing a better method for simulating the trajectory, the Runge-Kutta 4 method.</p>
+                <p>The RK4 is a 4th order method that I used to simulate a trajectory after the shortcomings of the forward Euler. The RK4 method <em>doesn't</em> assume constant velocity or acceleration during the time step, allowing the trajectory to be far more accurate. Furthermore when the time step is halved, the error in the RK4 method plummets by a factor of <em>16</em> as compared to the forward Euler methods error which would drop by a factor of 2. So this method doesnt require as small of a time step and is far more accurate, which is computationally much cheaper.</p>
+            </div>
+            
+            <div class="img-container">
+                <img src="RK4-graph.png" alt="RK4 Projectile Trajectory Graph">
+                <p class="img-caption">RK4 simulated trajectory for a padel ball (Initial velocity: 30m/s, Launch angle: 45°).</p>
+            </div>
+        </details>
 
-        <h3>2. Linear Regression via Gradient Descent</h3>
-        <div class="text-block">
-            <p>Now that I had accurately simulated the trajectory, I had acquired my training data. The next step was to build the model. I started by looking into Linear Regression using gradient descent, which I used Imperials "Mathematics for Machine Learning" course to truly understand the underlying maths behind the model. So I derived the equation by hand and implemented the model from scratch.</p>
-            <p>This model required fine-tuning parameters such as the learning rate, number of epochs (passes) and also the number of features I gave the model. Since this was an iterative approach, the model needed thousands of epochs to perform somewhat accurately, however this was far too computationally expensive and simply not accurate enough. Furthermore when I attempted polynomial regression, the accuracy was laughable. Of course since projectile motion is <em>fundamentally</em> non-linear, I needed a better model. The GD regression model couldn't even produce a graph of the curve without running into an overflow error, demonstrating its inability to properly deal with higher degree polynomials.</p>
-        </div>
+        <details class="project-dropdown">
+            <summary class="project-title">2. Linear Regression via Gradient Descent</summary>
+            <div class="text-block">
+                <p>Now that I had accurately simulated the trajectory, I had acquired my training data. The next step was to build the model. I started by looking into Linear Regression using gradient descent, which I used Imperials "Mathematics for Machine Learning" course to truly understand the underlying maths behind the model. So I derived the equation by hand and implemented the model from scratch.</p>
+                <p>This model required fine-tuning parameters such as the learning rate, number of epochs (passes) and also the number of features I gave the model. Since this was an iterative approach, the model needed thousands of epochs to perform somewhat accurately, however this was far too computationally expensive and simply not accurate enough. Furthermore when I attempted polynomial regression, the accuracy was laughable. Of course since projectile motion is <em>fundamentally</em> non-linear, I needed a better model. The GD regression model couldn't even produce a graph of the curve without running into an overflow error, demonstrating its inability to properly deal with higher degree polynomials.</p>
+            </div>
 
-        <div class="error-block">
-            > OverflowError: math range error<br>
-            > Output exceeds computational limits for higher degree polynomials during Gradient Descent.
-        </div>
+            <div class="error-block">
+                > OverflowError: math range error<br>
+                > Output exceeds computational limits for higher degree polynomials during Gradient Descent.
+            </div>
+        </details>
 
-        <h3>3. Linear Regression via Normal Equation</h3>
-        <div class="text-block">
-            <p>I soon learned that the exact weights that govern a curve can in fact be calculated in one step - one calculation. No loops, no iterations. This was done using the closed form normal equation. After learning the maths and deriving the equation by hand once again, I implemented this new regression model.</p>
-            <p>This model performed far better than the gradient descent one, computationally much cheaper while also being far more accurate. Most importantly, the model had no trouble with higher degree polynomial equations. This was the model to use.</p>
-        </div>
-        
-        <div class="img-container">
-            <img src="image_e157a8.png" alt="Normal Equation Model Evaluation Graph">
-            <p class="img-caption">Model evaluation utilizing the Normal Equation for the curve y = 4x³ - 6x² + 7x - 5.</p>
-        </div>
+        <details class="project-dropdown">
+            <summary class="project-title">3. Linear Regression via Normal Equation</summary>
+            <div class="text-block">
+                <p>I soon learned that the exact weights that govern a curve can in fact be calculated in one step - one calculation. No loops, no iterations. This was done using the closed form normal equation. After learning the maths and deriving the equation by hand once again, I implemented this new regression model.</p>
+                <p>This model performed far better than the gradient descent one, computationally much cheaper while also being far more accurate. Most importantly, the model had no trouble with higher degree polynomial equations. This was the model to use.</p>
+            </div>
+            
+            <div class="img-container">
+                <img src="image_e157a8.png" alt="Normal Equation Model Evaluation Graph">
+                <p class="img-caption">Model evaluation utilizing the Normal Equation for the curve y = 4x³ - 6x² + 7x - 5.</p>
+            </div>
+        </details>
         
         <h3>Next Steps: Neural Networks</h3>
         <p>I am currently applying the mathematics from the Imperial MML course to build a neural network from scratch to further optimize these predictions.</p>
